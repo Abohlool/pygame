@@ -18,6 +18,9 @@ velocity = 5
 running = True
 while running:
     pygame.time.delay(100)
+    pygame.display.update()
+    screen.fill(0x220022)
+    
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
@@ -25,5 +28,19 @@ while running:
         if event.type == KEYUP:
             if event.key == K_ESCAPE:
                 running = False
+
+            elif event.key in [K_w, K_UP]:
+                y -= velocity
+
+            elif event.key in [K_d, K_RIGHT]:
+                x += velocity
+            
+            elif event.key in [K_s, K_DOWN]:
+                y += velocity
+            
+            elif event.key in [K_a, K_LEFT]:
+                x -= velocity
+                
     
+    pygame.draw.rect(screen, 0xFF0000, (x, y, width, height))
 pygame.quit()
