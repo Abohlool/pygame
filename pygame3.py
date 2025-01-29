@@ -78,6 +78,20 @@ while running:
             counter = 0
             points.append(pygame.Rect(randint(0, WIDTH - SIZE), randint(0, HEIGHT - SIZE), SIZE, SIZE))
             
+        screen.fill(0xFFFFFF)
+
+        if moveDown and player.bottom < HEIGHT:
+            player.top += velocity
+
+        elif moveUp and player.top > 0:
+            player.top -= velocity
+        
+        if moveRight and player.right < WIDTH:
+            player.left += velocity
+
+        elif moveLeft and player.left > 0:
+            player.left += velocity
             
+    
 pygame.quit()
 
