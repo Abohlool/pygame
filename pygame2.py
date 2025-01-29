@@ -18,7 +18,7 @@ UPRIGHT = "upright"
 
 dir = [DOWNLEFT, DOWNRIGHT, UPLEFT, UPRIGHT]
 
-velocity = 5
+velocity = 1
 BOXES = 3
 
 def box():
@@ -44,40 +44,57 @@ while (running):
             if event.key == K_ESCAPE:
                 running = False
                 
-        for box in boxes:
-            if box["rect"].bottom > HEIGHT:
-                if box["rect"].dir == DOWNLEFT:
-                    box["dir"] = UPLEFT
-                
-                elif box["dir"] == DOWNRIGHT:
-                    box["dir"] = UPRIGHT
+    for box in boxes:
+        if box["rect"].bottom > HEIGHT:
+            if box["dir"] == DOWNLEFT:
+                box["dir"] = UPLEFT
             
-            elif box["rect"].top < 0:
-                if box["rect"].dir == UPLEFT:
-                    box["dir"] = DOWNLEFT
-                
-                elif box["dir"] == UPRIGHT:
-                    box["dir"] = DOWNRIGHT
+            elif box["dir"] == DOWNRIGHT:
+                box["dir"] = UPRIGHT
+        
+        elif box["rect"].top < 0:
+            if box["dir"] == UPLEFT:
+                box["dir"] = DOWNLEFT
             
-            if box["rect"].left < 0:
-                if box["rect"].dir == DOWNLEFT:
-                    box["dir"] = DOWNRIGHT
-                
-                elif box["dir"] == UPLEFT:
-                    box["dir"] = UPRIGHT
+            elif box["dir"] == UPRIGHT:
+                box["dir"] = DOWNRIGHT
+        
+        if box["rect"].left < 0:
+            if box["dir"] == DOWNLEFT:
+                box["dir"] = DOWNRIGHT
             
-            elif box["rect"].right > WIDTH:
-                if box["rect"].dir == DOWNRIGHT:
-                    box["dir"] = DOWNLEFT
-                
-                elif box["dir"] == UPRIGHT:
-                    box["dir"] = UPLEFT
+            elif box["dir"] == UPLEFT:
+                box["dir"] = UPRIGHT
+        
+        elif box["rect"].right > WIDTH:
+            if box["dir"] == DOWNRIGHT:
+                box["dir"] = DOWNLEFT
             
-
-
-
-                
+            elif box["dir"] == UPRIGHT:
+                box["dir"] = UPLEFT
         
 
+        if box["dir"] == DOWNLEFT:
+            box["rect"].top += velocity
+            box["rect"].left -= velocity
+        
+        elif box["dir"] == DOWNRIGHT:
+            box["rect"].top += velocity
+            box["rect"].left += velocity
 
+        elif box["dir"] == UPLEFT:
+            box["rect"].top -= velocity
+            box["rect"].left -= velocity
+
+        elif box["dir"] == UPRIGHT:
+            box["rect"].top -= velocity
+            box["rect"].left += velocity
+            
+        pygame.draw.rect(screen, box["colour"], box["rect"])
+
+    pygame.display.update()
+    screen.fill(0xFFFFFF)
+    pygame.time.delay(3)
+    
+        
 pygame.quit
