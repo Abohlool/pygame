@@ -28,7 +28,8 @@ while running:
         if event.type == KEYUP:
             if event.key == K_ESCAPE:
                 running = False
-                
+        
+        if event.type == KEYDOWN:
             if event.key in [K_w, K_UP]:
                 y -= velocity
 
