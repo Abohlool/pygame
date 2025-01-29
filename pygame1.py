@@ -1,5 +1,7 @@
 import pygame
 
+pygame.init()
+
 HEIGHT = 500
 WIDTH = 500
 
