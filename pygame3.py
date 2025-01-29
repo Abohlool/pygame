@@ -36,5 +36,24 @@ while running:
             if event.key == K_ESCAPE:
                 running = False
     
+        if event.type == KEYDOWN:
+            if event.key in [K_w, K_UP]:
+                moveUp = True
+                moveDown = False
+                
+            elif event.key in [K_s, K_DOWN]:
+                moveup = False
+                moveDown = True
+                
+            if event.key in [K_d, K_RIGHT]:
+                moveRight = True
+                moveLeft = False
+            
+            elif event.key in [K_a, K_LEFT]:
+                moveRight = False
+                moveLeft = True
+            
+            
+            
 pygame.quit()
 
