@@ -15,6 +15,7 @@ NEWPOINT = 40
 SIZE = 20
 
 player = pygame.Rect(randint(0, WIDTH - 50), randint(0, HEIGHT -50), 50, 50)
+PLAYERCOLOUR = (randint(5, 250), randint(5, 250), randint(5, 250))
 
 points = list()
 for _ in range(20):
@@ -91,7 +92,12 @@ while running:
 
         elif moveLeft and player.left > 0:
             player.left += velocity
-            
-    
+        
+        pygame.draw.rect(screen, PLAYERCOLOUR, player)
+        
+        for point in points[:]:
+            if player.colliderect(point):
+                points.remove(point)
+        
 pygame.quit()
 
