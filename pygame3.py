@@ -99,5 +99,9 @@ while running:
             if player.colliderect(point):
                 points.remove(point)
         
+        for i in range(len(point)):
+            pygame.draw.rect(screen, (randint(5, 250), randint(5, 250), randint(5, 250)), points[i])
+
+        
 pygame.quit()
 
