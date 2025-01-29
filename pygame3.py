@@ -70,5 +70,14 @@ while running:
             elif event.key in [K_a, K_LEFT]: 
                 moveLeft = False
                 
+        if event.type == MOUSEBUTTONUP:
+            points.append(pygame.Rect(event.pos[0], event.pos[1], SIZE, SIZE))
+        
+        counter += 1
+        if counter >= NEWPOINT:
+            counter = 0
+            points.append(pygame.Rect(randint(0, WIDTH - SIZE), randint(0, HEIGHT - SIZE), SIZE, SIZE))
+            
+            
 pygame.quit()
 
