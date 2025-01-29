@@ -52,6 +52,10 @@ while running:
             elif event.key in [K_a, K_LEFT]:
                 moveRight = False
                 moveLeft = True
+                
+            if event.key == K_x:
+                player.top = randint(0, HEIGHT - player.height)
+                player.left = randint(0, WIDTH - player.width)
             
         if event.type == KEYUP:
             if event.key in [K_w, K_UP]:
