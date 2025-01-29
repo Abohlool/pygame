@@ -53,7 +53,18 @@ while running:
                 moveRight = False
                 moveLeft = True
             
-            
-            
+        if event.type == KEYUP:
+            if event.key in [K_w, K_UP]:
+                moveUp = False
+
+            elif event.key in [K_d, K_DOWN]:
+                moveDown = False
+
+            if event.key in [K_d, K_RIGHT]:
+                moveRight = False
+
+            elif event.key in [K_a, K_LEFT]: 
+                moveLeft = False
+                
 pygame.quit()
 
