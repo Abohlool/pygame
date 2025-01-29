@@ -44,6 +44,39 @@ while (running):
             if event.key == K_ESCAPE:
                 running = False
                 
+        for box in boxes:
+            if box["rect"].bottom > HEIGHT:
+                if box["rect"].dir == DOWNLEFT:
+                    box["dir"] = UPLEFT
+                
+                elif box["dir"] == DOWNRIGHT:
+                    box["dir"] = UPRIGHT
+            
+            elif box["rect"].top < 0:
+                if box["rect"].dir == UPLEFT:
+                    box["dir"] = DOWNLEFT
+                
+                elif box["dir"] == UPRIGHT:
+                    box["dir"] = DOWNRIGHT
+            
+            if box["rect"].left < 0:
+                if box["rect"].dir == DOWNLEFT:
+                    box["dir"] = DOWNRIGHT
+                
+                elif box["dir"] == UPLEFT:
+                    box["dir"] = UPRIGHT
+            
+            elif box["rect"].right > WIDTH:
+                if box["rect"].dir == DOWNRIGHT:
+                    box["dir"] = DOWNLEFT
+                
+                elif box["dir"] == UPRIGHT:
+                    box["dir"] = UPLEFT
+            
+
+
+
+                
         
 
 
