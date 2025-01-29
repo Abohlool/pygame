@@ -16,8 +16,23 @@ DOWNRIGHT = "downright"
 UPLEFT = "upleft"
 UPRIGHT = "upright"
 
-velocity = 5
+dir = [DOWNLEFT, DOWNRIGHT, UPLEFT, UPRIGHT]
 
+velocity = 5
+BOXES = 3
+
+def box():
+    len = randint(50, 100)
+    return {
+        "rect": pygame.Rect(randint(0, WIDTH - len), randint(0, HEIGHT - len), len, len),
+        "dir": choice(dir),
+        "colour": (randint(5, 250), randint(5, 250), randint(5, 250))
+            }
+
+boxes = list()
+
+for _ in range(BOXES):
+    boxes.append(box())
 
 running = True
 while (running):
