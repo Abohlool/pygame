@@ -19,7 +19,7 @@ running = True
 while running:
     pygame.time.delay(100)
     pygame.display.update()
-    screen.fill(0x220022)
+    screen.fill(0x320032)
     
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -28,8 +28,8 @@ while running:
         if event.type == KEYUP:
             if event.key == K_ESCAPE:
                 running = False
-
-            elif event.key in [K_w, K_UP]:
+                
+            if event.key in [K_w, K_UP]:
                 y -= velocity
 
             elif event.key in [K_d, K_RIGHT]:
