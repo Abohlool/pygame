@@ -10,11 +10,22 @@ HEIGHT = 500
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("media")
 
+player = pygame.Rect(300, 100, 40, 40)
+playerImg = pygame.image.load("player.png")
+playerImgFitted = pygame.transform.scale(playerImg, (40, 40))
+cherryImg = pygame.image.load("cherry.png")
+
 running = True
 while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-            
+        
+        if event.type == KEYUP:
+            if event.key == K_ESCAPE:
+                running = False
+                
+        screen.fill(0xC7C7C7)
+        pygame.display.update()
 
 pygame.quit()
