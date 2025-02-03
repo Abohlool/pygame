@@ -18,12 +18,12 @@ moveLeft = False
 VELOCITY = 10
 
 player = pygame.Rect(300, 100, 40, 40)
-playerImg = pygame.image.load("player.png")
+playerImg = pygame.image.load("src8/player.png")
 playerImgFitted = pygame.transform.scale(playerImg, (player.width, player.height))
-cherryImg = pygame.image.load("cherry.png")
+cherryImg = pygame.image.load("src8/cherry.png")
 
-pickUpSound = pygame.mixer.Sound("pickup.wav")
-pygame.mixer.music.load("background.mid")
+pickUpSound = pygame.mixer.Sound("src8/pickup.wav")
+pygame.mixer.music.load("src8/background.mid")
 pygame.mixer.music.play(-1, 0.0)
 musicPlaying = True
 
