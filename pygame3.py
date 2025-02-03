@@ -18,9 +18,11 @@ SIZE = 20
 player = pygame.Rect(randint(0, WIDTH - 50), randint(0, HEIGHT -50), 50, 50)
 PLAYERCOLOUR = (randint(5, 250), randint(5, 250), randint(5, 250))
 
+    
 points = list()
 for _ in range(20):
-    points.append(pygame.Rect(randint(0, WIDTH - SIZE), randint(0, HEIGHT - SIZE), SIZE, SIZE))
+    points.append({"rect": pygame.Rect(randint(0, WIDTH - SIZE), randint(0, HEIGHT - SIZE), SIZE, SIZE), 
+                   "colour": (randint(5, 250), randint(5, 250), randint(5, 250))})
 
 moveDown = False
 moveUp = False
@@ -75,36 +77,36 @@ while running:
         if event.type == MOUSEBUTTONUP:
             points.append(pygame.Rect(event.pos[0], event.pos[1], SIZE, SIZE))
         
-        counter += 1
-        if counter >= NEWPOINT:
-            counter = 0
-            points.append(pygame.Rect(randint(0, WIDTH - SIZE), randint(0, HEIGHT - SIZE), SIZE, SIZE))
-            
-        screen.fill(0xFFFFFF)
-
-        if moveDown and player.bottom < HEIGHT:
-            player.bottom += velocity
-
-        if moveUp and player.top > 0:
-            player.top -= velocity
-
-        if moveRight and player.right < WIDTH:
-            player.right += velocity
-
-        if moveLeft and player.left > 0:
-            player.left -= velocity
+    counter += 1
+    if counter >= NEWPOINT:
+        counter = 0
+        points.append({"rect": pygame.Rect(randint(0, WIDTH - SIZE), randint(0, HEIGHT - SIZE), SIZE, SIZE), 
+                   "colour": (randint(5, 250), randint(5, 250), randint(5, 250))})
         
-        pygame.draw.rect(screen, 0x000000, player)
-        
-        for point in points[:]:
-            if player.colliderect(point):
-                points.remove(point)
-        
-        for i in range(len(points)):
-            pygame.draw.rect(screen, (0xFF00FF), points[i])
+    screen.fill(0xFFFFFF)
+
+    if moveDown and player.bottom < HEIGHT:
+        player.bottom += velocity
+
+    if moveUp and player.top > 0:
+        player.top -= velocity
+
+    if moveRight and player.right < WIDTH:
+        player.right += velocity
+
+    if moveLeft and player.left > 0:
+        player.left -= velocity
+    
+    pygame.draw.rect(screen, PLAYERCOLOUR, player)
+    
+    for newPoint in points[:]:
+        if player.colliderect(newPoint["rect"]):
+            points.remove(newPoint)
+    
+    for point in points:
+        pygame.draw.rect(screen, point["colour"], point["rect"])
 
     pygame.display.update() 
     clock.tick(60)
     
 pygame.quit()
-
