@@ -3,9 +3,10 @@ from pygame.locals import *
 from random import randint
 
 pygame.init()
+clock = pygame.time.Clock()
 
-WIDTH = 600
-HEIGHT = 600
+WIDTH = 400
+HEIGHT = 400
 
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Collision Detection")
@@ -32,25 +33,21 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-            
-        if event.type == KEYUP:
-            if event.key == K_ESCAPE:
-                running = False
-    
+
         if event.type == KEYDOWN:
-            if event.key in [K_w, K_UP]:
+            if event.key == K_w or event.key == K_UP:
                 moveUp = True
                 moveDown = False
                 
-            elif event.key in [K_s, K_DOWN]:
+            if event.key == K_s or event.key == K_DOWN:
                 moveup = False
                 moveDown = True
                 
-            if event.key in [K_d, K_RIGHT]:
+            if event.key == K_d or event.key == K_RIGHT:
                 moveRight = True
                 moveLeft = False
             
-            elif event.key in [K_a, K_LEFT]:
+            if event.key == K_a or event.key == K_LEFT:
                 moveRight = False
                 moveLeft = True
                 
@@ -59,16 +56,20 @@ while running:
                 player.left = randint(0, WIDTH - player.width)
             
         if event.type == KEYUP:
-            if event.key in [K_w, K_UP]:
+            if event.type == KEYUP:
+                if event.key == K_ESCAPE:
+                    running = False
+                
+            if event.key == K_w or event.key == K_UP:
                 moveUp = False
 
-            elif event.key in [K_d, K_DOWN]:
+            if event.key == K_d or event.key == K_DOWN:
                 moveDown = False
 
-            if event.key in [K_d, K_RIGHT]:
+            if event.key == K_d or event.key == K_RIGHT:
                 moveRight = False
 
-            elif event.key in [K_a, K_LEFT]: 
+            if event.key == K_a or event.key == K_LEFT: 
                 moveLeft = False
                 
         if event.type == MOUSEBUTTONUP:
@@ -82,26 +83,28 @@ while running:
         screen.fill(0xFFFFFF)
 
         if moveDown and player.bottom < HEIGHT:
-            player.top += velocity
+            player.bottom += velocity
 
-        elif moveUp and player.top > 0:
+        if moveUp and player.top > 0:
             player.top -= velocity
-        
-        if moveRight and player.right < WIDTH:
-            player.left += velocity
 
-        elif moveLeft and player.left > 0:
-            player.left += velocity
+        if moveRight and player.right < WIDTH:
+            player.right += velocity
+
+        if moveLeft and player.left > 0:
+            player.left -= velocity
         
-        pygame.draw.rect(screen, PLAYERCOLOUR, player)
+        pygame.draw.rect(screen, 0x000000, player)
         
         for point in points[:]:
             if player.colliderect(point):
                 points.remove(point)
         
-        for i in range(len(point)):
-            pygame.draw.rect(screen, (randint(5, 250), randint(5, 250), randint(5, 250)), points[i])
+        for i in range(len(points)):
+            pygame.draw.rect(screen, (0xFF00FF), points[i])
 
-        
+    pygame.display.update() 
+    clock.tick(60)
+    
 pygame.quit()
 
