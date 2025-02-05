@@ -14,7 +14,8 @@ PLAYERSPEED = 5
 pygame.init()
 
 def terminate():
-    ...
+    pygame.quit()
+    sys.exit()
     
 def wait():
     ...
