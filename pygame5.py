@@ -11,13 +11,11 @@ MINSPEED = 1
 MAXSPEED = 8
 PLAYERSPEED = 5
 
-pygame.init()
-
-def terminate():
+def terminate() -> None:
     pygame.quit()
     sys.exit()
     
-def wait():
+def wait() -> None:
     while True:
         for event in pygame.evennt.get():
             if event.type == pygame.QUIT:
@@ -29,11 +27,18 @@ def wait():
 
                 return 
     
-def collision():
-    ...
+def collision(player, enemies) -> bool:
+    for enemy in enemies:
+        if player.coliderect(enemy):
+            return True
+
+    return False
     
-def txt():
-    ...
+def drawText(txt: str, font, screen, x: int, y: int) -> None:
+    text = font.render(txt, True, 0x000000)
+    textRect = text.get_rect()
+    textRect.topleft = (x, y)
+    screen.blit(text, textRect)
 
 while True:
     for event in pygame.event.get():
