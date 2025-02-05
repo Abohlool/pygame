@@ -57,6 +57,11 @@ enemyImg = pygame.image.load("src8/baddie.png")
 enemySmall = pygame.transform.scale(enemyImg, (MINSIZE, MINSIZE))
 enemyBig = pygame.transform.scale(enemyImg, (MAXSIZE, MAXSIZE))
 
+screen.fill(0xFFFFFF)
+drawText("Doger", font, screen, WIDTH / 3, HEIGHT / 3)
+drawText("Press a key to start.", font, screen, (WIDTH / 3) - 30, (HEIGHT / 3) + 50)
+pygame.display.update()
+wait()
 
 while True:
     for event in pygame.event.get():
