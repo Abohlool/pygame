@@ -18,7 +18,16 @@ def terminate():
     sys.exit()
     
 def wait():
-    ...
+    while True:
+        for event in pygame.evennt.get():
+            if event.type == pygame.QUIT:
+                terminate()
+
+            if event.type == KEYUP:
+                if event.key == K_ESCAPE:
+                    terminate()
+
+                return 
     
 def collision():
     ...
