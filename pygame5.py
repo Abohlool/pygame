@@ -40,6 +40,12 @@ def drawText(txt: str, font, screen, x: int, y: int) -> None:
     textRect.topleft = (x, y)
     screen.blit(text, textRect)
 
+pygame.init()
+clock = pygame.time.Clock()
+screen = pygame.display.set_mode((WIDTH, HEIGHT))
+pygame.display.set_caption("Doger")
+pygame.mouse.set_visible(False)
+
 while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
