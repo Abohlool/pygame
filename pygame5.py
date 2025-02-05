@@ -46,6 +46,18 @@ screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Doger")
 pygame.mouse.set_visible(False)
 
+font = pygame.font.SysFont(None, 48)
+
+gameOverSound = pygame.mixer.Sound("src8/gameover.wav")
+pygame.mixer.music.load("src8/background.mid")
+
+playerImg = pygame.image.load("src8/player.png")
+playerRect = playerImg.get_rect()
+enemyImg = pygame.image.load("src8/baddie.png")
+enemySmall = pygame.transform.scale(enemyImg, (MINSIZE, MINSIZE))
+enemyBig = pygame.transform.scale(enemyImg, (MAXSIZE, MAXSIZE))
+
+
 while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
