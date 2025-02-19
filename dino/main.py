@@ -42,25 +42,63 @@ class Dino:
     x_pos: int = 80
     y_pos: int = 310
     y_pos_duck: int = 340
-    jump_velocity: float = .5
+    jump_velocity: float = 8.5
 
     def __init__(self):
-        pass
+        self.duckImg = duckingImg
+        self.jumpImg = jumpingImg
+        self.runImg = runningImg
+        
+        self.ducking = False
+        self.running = True
+        self.jumping = False
+        
+        self.step = 0
+        self.jumpVelocity = self.jump_velocity
+        self.image = self.runImg[0]
+        self.dinoRect = self.image.get_rect()
+        self.dinoRect.topleft = (self.x_pos, self.y_pos)
+        
     
     def update(self):
-        pass
+        if self.ducking:
+            self.duck()
+            
+        if self.jumping:
+            self.jump()
+            
+        if self.running:
+            self.run()
+            
+        if self.step >= 10:
+            self.step = 0
     
     def jump(self):
-        pass
+        self.image = self.jumpImg
+        if self.jumping:
+            self.dino_rect.y -= self.jump_velocity * 4
+            self.jump_velocity -= 0.8
+    
+        if self.jump_velocity < - self.jumpVelocity:
+            self.dino_jump = False
+            self.jump_velocity = self.jumpVelocity
+
     
     def duck(self):
-        pass
+        self.image = self.duckImg[self.step // 5]
+        self.dinoRect = self.image.get_rect()
+        self.dinoRect.topleft = (self.x_pos, self.y_pos_duck)
+        self.step += 1
+
     
     def run(self):
-        pass
+        self.image = self.run_img[self.step // 5]
+        self.dinoRect = self.image.get_rect()
+        self.dinoRect.topleft = (self.x_pos, self.y_pos)
+        self.step += 1
 
     def draw(self):
-        pass
+        screen.blit(self.image, self.dinoRect.topleft)
     
 class cloud:
     def __init__(self):
