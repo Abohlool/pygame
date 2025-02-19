@@ -35,3 +35,29 @@ birdImg = [pygame.image.load("src/Bird1.png"),
 cloudImg = pygame.image.load("src/Cloud.png")
 
 trackImg = pygame.image.load("src/Track.png")
+
+
+# Dino class
+class Dino:
+    x_pos: int = 80
+    y_pos: int = 310
+    y_pos_duck: int = 340
+    jump_velocity: float = .5
+
+    def __init__(self):
+        pass
+    
+    def update(self):
+        pass
+    
+    def jump(self):
+        pass
+    
+    def duck(self):
+        pass
+    
+    def run(self):
+        pass
+
+    def draw(self):
+        pass
