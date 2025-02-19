@@ -61,3 +61,15 @@ class Dino:
 
     def draw(self):
         pass
+    
+class cloud:
+    def __init__(self):
+        pass
+    
+    def update(self):
+        pass
+    
+    def draw(seld):
+        pass
+        
+    
